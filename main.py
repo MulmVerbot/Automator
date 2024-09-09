@@ -23,6 +23,9 @@ class Automator:
         self.aufz_start_knopp.pack(side="bottom", padx=20, pady=1, expand=True)
         self.aufz_start_l = tk.Label(root, text="Mausclicks aufzeichnen")
         self.aufz_start_l.pack(side="bottom", padx=10, pady=1, expand=True)
+
+        self.ausgabe_mausklicks = tk.Text(root, width="250", height="420")
+        self.ausgabe_mausklicks.pack(side="left", padx=10, pady=1, expand=True)
         print("[-GUI laden-] Beendet.")
 
     def Aufzeichnung_starten_vor(self):
@@ -33,10 +36,14 @@ class Automator:
 
     def Aufzeichnung_starten(self):
         print("[-Aufzeichnung-] Gestartet.")
+        self.gespeicherte_Aufzeichnungen = []
         def on_click(x, y, button, pressed):
             if pressed:
                 self.anzahl_der_clicks += 1
-                print(f"{self.anzahl_der_clicks} Mausklick\nCursor-Koordinaten: X={x}, Y={y}")
+                self.ausgabe_mausklicks.insert(tk.END, f"{self.anzahl_der_clicks} Mausklick Cursor-Koordinaten: X= {x} Y={y}\n")
+                self.gespeicherte_Aufzeichnungen.append(f"X={x} Y={y}")
+                print(self.gespeicherte_Aufzeichnungen)
+                #print(f"{self.anzahl_der_clicks} Mausklick\nCursor-Koordinaten: X={x}, Y={y}")
 
         # Mausklick-Ereignisregistrierung
         with mouse.Listener(on_click=on_click) as listener:
