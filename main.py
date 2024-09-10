@@ -67,7 +67,8 @@ class Automator:
         for M in Zeugs:
             print(f"{M}")
             kord = M
-            g3.moveTo(int(kord))
+            x, y = map(float, kord.split(','))
+            g3.moveTo(x,y)
             time.sleep(0.1)
             print(f"Bewegt nach {kord}.")
 
