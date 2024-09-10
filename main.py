@@ -15,6 +15,7 @@ class Automator:
         self.Version = "0.0"
         self.bildschirm_breite, self.bildschirm_hoehe = g3.size()
         self.anzahl_der_clicks = 0
+        self.master.title(self.Programm_Name + " " + self.Version)
         self.GUI_laden()
 
     def GUI_laden(self):
@@ -40,32 +41,36 @@ class Automator:
     def Aufzeichnung_starten(self):
         print("[-Aufzeichnung-] Gestartet.")
         self.gespeicherte_Aufzeichnungen = []
+
         def on_click(x, y, button, pressed):
             if pressed:
                 self.anzahl_der_clicks += 1
-                self.ausgabe_mausklicks.insert(tk.END, f"{self.anzahl_der_clicks} Mausklick Cursor-Koordinaten: X= {x} Y={y}\n")
                 self.gespeicherte_Aufzeichnungen.append(f"{x},{y}")
+                self.ausgabe_mausklicks.insert(tk.END, f"{self.anzahl_der_clicks}. Mausklick Cursor-Koordinaten: X= {x} Y={y}\n")
                 print(self.gespeicherte_Aufzeichnungen)
 
-        # Mausklick-Ereignisregistrierung
-        with mouse.Listener(on_click=on_click) as listener:
-            listener.join()
+        # Mausklick-Ereignisregistrierung in einem separaten Thread
+        self.listener = mouse.Listener(on_click=on_click)
+        self.listener.start()
 
     def Aufzeichnung_thread_stopp(self):
         print("[-Aufzeichnung-] Beendet.")
         self.aufz_start_knopp.configure(text="Aufzeichnung starten", command=self.Aufzeichnung_starten_vor)
+        if self.listener:
+            self.listener.stop()  # Stoppt den listener damit das endlich mal hinhaut hier
+            self.listener = None
         try:
-            self.Maus_aufz_thread.join()
-            print("Thread beendet")
+            if self.Maus_aufz_thread:
+                self.Maus_aufz_thread.cancel()
+                print("[-Aufzeichnung-] Thread beendet")
         except Exception as E:
-            print("[-Aufzeichnung-] Thread der Mausaufzeichnung_Benden is abgekackt.")
+            print(f"[-Aufzeichnung-] Fehler beim Beenden des Threads: {E}")
 
     def Aufzeichnung_abspielen_maus(self):
         print("Aufzeichnung_abspielen_maus(def)")
         Zeugs = self.gespeicherte_Aufzeichnungen
-
         for M in Zeugs:
-            print(f"{M}")
+            #print(f"{M}")
             kord = M
             x, y = map(float, kord.split(','))
             g3.moveTo(x,y)
@@ -77,7 +82,7 @@ class Automator:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    width = 640
+    width = 660
     height = 420
     def mittig_fenster(root, width, height):
         fenster_breite = root.winfo_screenwidth()
