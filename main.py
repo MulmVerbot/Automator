@@ -6,8 +6,6 @@ from pynput.mouse import Controller, Button
 from threading import Thread
 import threading
 
-
-
 class Automator:
     def __init__(self, master):
         self.master = master
@@ -24,10 +22,8 @@ class Automator:
         self.aufz_start_knopp.pack(side="bottom", padx=20, pady=1, expand=True)
         self.aufz_start_l = tk.Label(root, text="Mausclicks aufzeichnen")
         self.aufz_start_l.pack(side="bottom", padx=10, pady=1, expand=True)
-
         self.Aufzeichnung_abspielen_maus_knopp = tk.Button(root, text="Aufzeichnung abspielen", command=self.Aufzeichnung_abspielen_maus)
         self.Aufzeichnung_abspielen_maus_knopp.pack(side="left", padx=10, pady=1, expand=True)
-
         self.ausgabe_mausklicks = tk.Text(root, width="250", height="420")
         self.ausgabe_mausklicks.pack(side="left", padx=10, pady=1, expand=True)
         print("[-GUI laden-] Beendet.")
@@ -63,22 +59,19 @@ class Automator:
             if self.Maus_aufz_thread:
                 self.Maus_aufz_thread.cancel()
                 print("[-Aufzeichnung-] Thread beendet")
-        except Exception as E:
-            print(f"[-Aufzeichnung-] Fehler beim Beenden des Threads: {E}")
+        except Exception as e:
+            print(f"[-Aufzeichnung-] Fehler beim Beenden des Threads: {e}")
 
     def Aufzeichnung_abspielen_maus(self):
         print("Aufzeichnung_abspielen_maus(def)")
         Zeugs = self.gespeicherte_Aufzeichnungen
         for M in Zeugs:
-            #print(f"{M}")
             kord = M
             x, y = map(float, kord.split(','))
             g3.moveTo(x,y)
+            g3.click()
             time.sleep(0.1)
             print(f"Bewegt nach {kord}.")
-
-
-
 
 if __name__ == "__main__":
     root = tk.Tk()
