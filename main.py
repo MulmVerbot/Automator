@@ -24,6 +24,9 @@ class Automator:
         self.aufz_start_l = tk.Label(root, text="Mausclicks aufzeichnen")
         self.aufz_start_l.pack(side="bottom", padx=10, pady=1, expand=True)
 
+        self.Aufzeichnung_abspielen_maus_knopp = tk.Button(root, text="Aufzeichnung abspielen", command=self.Aufzeichnung_abspielen_maus)
+        self.Aufzeichnung_abspielen_maus_knopp.pack(side="left", padx=10, pady=1, expand=True)
+
         self.ausgabe_mausklicks = tk.Text(root, width="250", height="420")
         self.ausgabe_mausklicks.pack(side="left", padx=10, pady=1, expand=True)
         print("[-GUI laden-] Beendet.")
@@ -41,9 +44,8 @@ class Automator:
             if pressed:
                 self.anzahl_der_clicks += 1
                 self.ausgabe_mausklicks.insert(tk.END, f"{self.anzahl_der_clicks} Mausklick Cursor-Koordinaten: X= {x} Y={y}\n")
-                self.gespeicherte_Aufzeichnungen.append(f"X={x} Y={y}")
+                self.gespeicherte_Aufzeichnungen.append(f"{x},{y}")
                 print(self.gespeicherte_Aufzeichnungen)
-                #print(f"{self.anzahl_der_clicks} Mausklick\nCursor-Koordinaten: X={x}, Y={y}")
 
         # Mausklick-Ereignisregistrierung
         with mouse.Listener(on_click=on_click) as listener:
@@ -58,9 +60,23 @@ class Automator:
         except Exception as E:
             print("[-Aufzeichnung-] Thread der Mausaufzeichnung_Benden is abgekackt.")
 
+    def Aufzeichnung_abspielen_maus(self):
+        print("Aufzeichnung_abspielen_maus(def)")
+        Zeugs = self.gespeicherte_Aufzeichnungen
+
+        for M in Zeugs:
+            print(f"{M}")
+            kord = M
+            g3.moveTo(int(kord))
+            time.sleep(0.1)
+            print(f"Bewegt nach {kord}.")
+
+
+
+
 if __name__ == "__main__":
     root = tk.Tk()
-    width = 444
+    width = 640
     height = 420
     def mittig_fenster(root, width, height):
         fenster_breite = root.winfo_screenwidth()
