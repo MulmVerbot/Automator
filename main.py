@@ -24,12 +24,20 @@ class Automator:
         self.aufz_start_l.pack(side="bottom", padx=10, pady=1, expand=True)
         self.Aufzeichnung_abspielen_maus_knopp = tk.Button(root, text="Aufzeichnung abspielen", command=self.Aufzeichnung_abspielen_maus)
         self.Aufzeichnung_abspielen_maus_knopp.pack(side="left", padx=10, pady=1, expand=True)
-        self.ausgabe_mausklicks = tk.Text(root, width="250", height="420")
+        self.ausgabe_mausklicks = tk.Text(root, width="260", height="420")
         self.ausgabe_mausklicks.pack(side="left", padx=10, pady=1, expand=True)
+        self.Mausaufzeichnung_zurücksetzen_knopp = tk.Button(root, text="Mausaufzeichnung zurücksetzen", command=self.Mausaufzeichnung_zurücksetzen)
+        self.Mausaufzeichnung_zurücksetzen_knopp.pack(side="left", padx=10, pady=10, expand=True)
         print("[-GUI laden-] Beendet.")
 
+    def Mausaufzeichnung_zurücksetzen(self):
+        print("Mausaufzeichnung_zurücksetzen(def)")
+        self.gespeicherte_Aufzeichnungen = []
+
+
     def Aufzeichnung_starten_vor(self):
-        self.Maus_aufz_thread = threading.Timer(1, self.Aufzeichnung_starten)
+        verzögerung = 0.1
+        self.Maus_aufz_thread = threading.Timer(int(verzögerung), self.Aufzeichnung_starten)
         self.Maus_aufz_thread.daemon = True
         self.Maus_aufz_thread.start()
         self.aufz_start_knopp.configure(text="Aufzeichnung stoppen", command=self.Aufzeichnung_thread_stopp)
