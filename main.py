@@ -62,7 +62,7 @@ class Automator:
                 self.anzahl_der_clicks += 1
                 self.gespeicherte_Aufzeichnungen.append(f"{x},{y}")
                 self.ausgabe_mausklicks.insert(tk.END, f"{self.anzahl_der_clicks}. Mausklick Cursor-Koordinaten: X= {x} Y={y}\n")
-                print(self.gespeicherte_Aufzeichnungen)
+                #print(self.gespeicherte_Aufzeichnungen)
                 self.ausgabe_mausklicks.see(tk.END)
                 self.ausgabe_mausklicks.configure(state="disabled")
 
