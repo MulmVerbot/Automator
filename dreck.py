@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import filedialog
+from tkinter.simpledialog import askstring
 import pyautogui
 import pynput
 from pynput import mouse
@@ -18,11 +19,12 @@ class DesktopAutomator:
         self.recording = False
         self.mouse_listener = None
         self.last_click = None
-        self.DOUBLE_CLICK_THRESHOLD = 500  # ms
+        self.DOUBLE_CLICK_THRESHOLD = 500
 
         tk.Button(self.root, text="Aufzeichnung starten", command=self.start_recording).pack(pady=5)
         tk.Button(self.root, text="Aufzeichnung stoppen", command=self.stop_recording).pack(pady=5)
         tk.Button(self.root, text="Knopf-Bild auswählen & hinzufügen", command=self.add_image_click).pack(pady=5)
+        tk.Button(self.root, text="Text-Eingabe hinzufügen", command=self.add_text_input).pack(pady=5)
         tk.Button(self.root, text="Abspielen", command=self.playback).pack(pady=5)
         tk.Button(self.root, text="Profil speichern", command=self.save_profile).pack(pady=5)
         tk.Button(self.root, text="Profil laden", command=self.load_profile).pack(pady=5)
@@ -42,6 +44,8 @@ class DesktopAutomator:
                 txt = f"{i}: Click {a['button']} bei ({a['x']},{a['y']})"
             elif a['type'] == 'double_click':
                 txt = f"{i}: DoubleClick {a['button']} bei ({a['x']},{a['y']}) interval {a.get('interval',0):.2f}s"
+            elif a['type'] == 'type_text':
+                txt = f"{i}: Type '{a['text'][:40]}...'"
             else:
                 txt = f"{i}: Image-Click {a['image_path']}"
             self.listbox.insert(tk.END, txt)
@@ -92,6 +96,12 @@ class DesktopAutomator:
         listener = mouse.Listener(on_click=on_capture)
         listener.start()
 
+    def add_text_input(self):
+        text = askstring("Text-Eingabe", "Zu tippenden Text (UTF-8):")
+        if text:
+            self.actions.append({'type': 'type_text', 'text': text})
+            self.update_list()
+
     def playback(self):
         for a in self.actions:
             if a['type'] == 'click':
@@ -103,6 +113,10 @@ class DesktopAutomator:
                 try:
                     btn = a['button'].replace('Button.', '').lower()
                     pyautogui.doubleClick(a['x'], a['y'], interval=a.get('interval', 0.0), button=btn)
+                except: pass
+            elif a['type'] == 'type_text':
+                try:
+                    pyautogui.typewrite(a['text'])
                 except: pass
             elif a['type'] == 'image_click':
                 self.find_and_click_image(a['image_path'])
@@ -129,13 +143,13 @@ class DesktopAutomator:
     def save_profile(self):
         f = filedialog.asksaveasfilename(defaultextension=".json")
         if f:
-            with open(f, 'w') as fh:
-                json.dump(self.actions, fh)
+            with open(f, 'w', encoding='utf-8') as fh:
+                json.dump(self.actions, fh, ensure_ascii=False)
 
     def load_profile(self):
         f = filedialog.askopenfilename(filetypes=[("JSON", "*.json")])
         if f:
-            with open(f, 'r') as fh:
+            with open(f, 'r', encoding='utf-8') as fh:
                 self.actions = json.load(fh)
             self.update_list()
 
