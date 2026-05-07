@@ -17,6 +17,8 @@ class DesktopAutomator:
         self.actions = []
         self.recording = False
         self.mouse_listener = None
+        self.last_click = None
+        self.DOUBLE_CLICK_THRESHOLD = 500  # ms
 
         tk.Button(self.root, text="Aufzeichnung starten", command=self.start_recording).pack(pady=5)
         tk.Button(self.root, text="Aufzeichnung stoppen", command=self.stop_recording).pack(pady=5)
@@ -38,6 +40,8 @@ class DesktopAutomator:
         for i, a in enumerate(self.actions):
             if a['type'] == 'click':
                 txt = f"{i}: Click {a['button']} bei ({a['x']},{a['y']})"
+            elif a['type'] == 'double_click':
+                txt = f"{i}: DoubleClick {a['button']} bei ({a['x']},{a['y']}) interval {a.get('interval',0):.2f}s"
             else:
                 txt = f"{i}: Image-Click {a['image_path']}"
             self.listbox.insert(tk.END, txt)
@@ -45,15 +49,29 @@ class DesktopAutomator:
     def start_recording(self):
         if self.recording: return
         self.recording = True
+        self.last_click = None
         def on_click(x, y, button, pressed):
-            if self.recording and pressed:
+            if not self.recording or not pressed: return
+            now = time.time() * 1000
+            if (self.last_click and 
+                (now - self.last_click['time']) < self.DOUBLE_CLICK_THRESHOLD and
+                abs(x - self.last_click['x']) < 10 and
+                abs(y - self.last_click['y']) < 10 and
+                button == self.last_click['button']):
+                interval = (now - self.last_click['time']) / 1000.0
+                self.actions.pop()
+                self.actions.append({'type': 'double_click', 'x': int(x), 'y': int(y), 'button': str(button), 'interval': interval})
+                self.last_click = None
+            else:
                 self.actions.append({'type': 'click', 'x': int(x), 'y': int(y), 'button': str(button)})
-                self.root.after(0, self.update_list)
+                self.last_click = {'time': now, 'x': x, 'y': y, 'button': button}
+            self.root.after(0, self.update_list)
         self.mouse_listener = mouse.Listener(on_click=on_click)
         self.mouse_listener.start()
 
     def stop_recording(self):
         self.recording = False
+        self.last_click = None
         if self.mouse_listener:
             self.mouse_listener.stop()
             self.mouse_listener = None
@@ -80,6 +98,11 @@ class DesktopAutomator:
                 try:
                     btn = a['button'].replace('Button.', '').lower()
                     pyautogui.click(a['x'], a['y'], button=btn)
+                except: pass
+            elif a['type'] == 'double_click':
+                try:
+                    btn = a['button'].replace('Button.', '').lower()
+                    pyautogui.doubleClick(a['x'], a['y'], interval=a.get('interval', 0.0), button=btn)
                 except: pass
             elif a['type'] == 'image_click':
                 self.find_and_click_image(a['image_path'])
