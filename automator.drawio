@@ -1,0 +1,95 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Seite-1" id="XDGRnDrLb_c4Xb5l-h97">
+    <mxGraphModel dx="1102" dy="592" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-1" target="fyFRn0jZXF5B-8yfr5Il-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-1" value="Knopf clicken" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-2" target="fyFRn0jZXF5B-8yfr5Il-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-2" value="Dropdown auswahl" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="70" y="330" />
+              <mxPoint x="70" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-3" value="Vorlage erstellen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="300" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-4" value="text eingeben" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-5" target="fyFRn0jZXF5B-8yfr5Il-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-5" value="Bild des knopfes hinterlegen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="334" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-6" value="genauigkeit des OCR festlegen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-11" target="fyFRn0jZXF5B-8yfr5Il-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-11" value="Bild des dropdowns hinterlegen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="334" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-12" target="fyFRn0jZXF5B-8yfr5Il-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-12" value="stelle auswählen&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="334" y="585" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-14" value="Dropdown inhalt der zu klicken ist wählen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.029;entryY=0.423;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-4" target="fyFRn0jZXF5B-8yfr5Il-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-17" value="klickt und gibt direkt ein" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="585" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="70" y="800" />
+              <mxPoint x="70" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-20" value="Vorlage speichern" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="224" y="780" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-21" value="Vorlage ausführen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="314" y="780" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="fyFRn0jZXF5B-8yfr5Il-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="400.0000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fyFRn0jZXF5B-8yfr5Il-22" value="Vorlage laden" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="404" y="780" width="80" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
